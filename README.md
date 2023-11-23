@@ -24,17 +24,17 @@ print('Nrc Number : ${nrc.nrcNo}');
       
 ### Get NRC States List
 ```dart
-    List<StateDivision?> state = await MmNrc.states();
+ List<StateDivision?> state = await MmNrc.states();
 ```
 
 ### Get NRC Township List
 ```dart
-    List<Township> townships = await MmNrc.townships();
+ List<Township> townships = await MmNrc.townships();
 ```
 
 ### Get NRC Types List
 ```dart
-   List<Types> types = await MmNrc.types();
+ List<Types> types = await MmNrc.types();
 ```
 
 ### Get NRC State by state code
@@ -47,18 +47,18 @@ print('Nrc Number : ${nrc.nrcNo}');
 
 ### Get NRC Township by state code . 1,2,3,4,5...
 ```dart
-Township township = await MmNrc.getNrcTownshipsByStateCode(stateCode:nrc.stateCode);
-Township township = await MmNrc.getNrcTownshipsByStateCode(stateCode:StateCode.YANGON.code );
+ Township township = await MmNrc.getNrcTownshipsByStateCode(stateCode:nrc.stateCode);
+ Township township = await MmNrc.getNrcTownshipsByStateCode(stateCode:StateCode.YANGON.code );
 ```
 
 ### Get NRC Township by short code
 ```dart
-Township township = await MmNrc.getNrcTownshipsByShortCode(shortCode: nrc.townshipCode);
-Township township = await MmNrc.getNrcTownshipsByShortCode(shortCode:"LAMANA");
+ Township township = await MmNrc.getNrcTownshipsByShortCode(shortCode: nrc.townshipCode);
+ Township township = await MmNrc.getNrcTownshipsByShortCode(shortCode:"LAMANA");
 ```
 
 ### Get NRC Township by short code
 ```dart
 --nrctype-- N|E|P|T|Y|S
-  Types type=await MmNrc.getNrcTypeByName(nrcType: 'N');
+ Types type=await MmNrc.getNrcTypeByName(nrcType: 'N');
 ```
