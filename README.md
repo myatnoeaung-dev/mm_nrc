@@ -4,9 +4,8 @@
 ### Resources:
 - [GitHub Repository](https://github.com/myatnoeaung-dev/mm_nrc.git)
 
-|             | Android | iOS   | Linux | macOS  | Web | Windows     |
-|-------------|---------|-------|-------|--------|-----|-------------|
-| **Support** | SDK 16+ | 11.0+ | Any   | 10.14+ | Any | Any         |
+| **Support** | Android | iOS        |
+|-------------|---------|------------|
 
 ### Installation
 To use this plugin, add `mm_nrc` as a [dependency in your pubspec.yaml file](https://flutter.dev/docs/development/platform-integration/platform-channels).
