@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'state.dart';
+import 'name.dart';
 
 class Township {
   final String id;

@@ -1,3 +1,4 @@
+/// State code enum for State Name and Code
 enum StateCode {
   KACHIN('1', 'KACHIN'),
   KAYAH('2', 'KACHIN'),
@@ -17,6 +18,9 @@ enum StateCode {
 
   const StateCode(this.code, this.name);
 
+  /// Represent for state code.
   final String code;
+
+  /// Represent for state name.
   final String name;
 }

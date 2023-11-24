@@ -71,23 +71,33 @@ class _MyHomePageState extends State<MyHomePage> {
           print('Nrc Type : ${nrc.nrcType}');
           print('Nrc Number : ${nrc.nrcNo}');
 
+          ///Check validation for nrc string
           print('check nrc ${MmNrc.checkValid(enNrcString: '12/ad(N)222015')}');
 
-          // RegExp mmRegExp = RegExp(
-          // print('${nrc.stateCode} ${nrc.townshipCode}');
-          var states =
+          ///Get state by state code
+          StateDivision? state =
               await MmNrc.getStateByStateCode(stateCode: StateCode.YANGON.code);
-          // print('${states?.code} ${states?.number.mm}');
+          print('State Code : ${state?.code}');
+          print('State Name : ${state?.name.en}');
 
-          // var township = await MmNrc.getNrcTownshipsByShortCode(
-          //     shortCode: nrc.townshipCode);
-          var township = await MmNrc.getNrcTownshipsByStateCode(
+          ///Get Township with stateCode
+          Township township = await MmNrc.getNrcTownshipsByStateCode(
               stateCode: nrc.townshipCode);
-          // print('${township.name.en} ${township.name.mm}');
+          print('Township EnName : ${township.name.en}');
+          print('Township MmName : ${township.name.mm}');
+
+          ///Get Township with township shortcode
+          Township township1 = await MmNrc.getNrcTownshipsByShortCode(
+              shortCode: nrc.townshipCode);
+          print('Township EnName : ${township1.name.en}');
+          print('Township MmName : ${township1.name.mm}');
+
+          ///Get Types list that return `N,E,S,T,P,Y`
           List<Types> types = await MmNrc.types();
-          Types type=await MmNrc.getNrcTypeByName(nrcType: 'nrcType');
-          // var type = await MmNrc.getNrcTypeByName(nrcType: nrc.nrcType);
-          // print('${type.name.en} ${type.name.mm}');
+
+          ///Get Type with nrc type
+          Types type = await MmNrc.getNrcTypeByName(nrcType: 'nrcType');
+          print('Nrc Type : ${type.name.en} ${type.name.mm}');
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add),

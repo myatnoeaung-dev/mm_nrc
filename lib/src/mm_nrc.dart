@@ -9,6 +9,8 @@ import 'package:mm_nrc/src/model/type.dart';
 
 class MmNrc {
   /// Check En Nrc string
+  ///
+  /// Return `false` if user input nrc string is not valid.
   static bool checkValid({required String enNrcString}) {
     RegExp enRegExp = RegExp(Data.enPattern);
     if (enRegExp.hasMatch(enNrcString)) {
@@ -21,13 +23,14 @@ class MmNrc {
   static Future<List<StateDivision?>> states() async {
     final String response = await rootBundle.loadString(Data.state);
     Iterable data = await json.decode(response);
-    List<StateDivision> states =
-        List<StateDivision>.from(data.map((model) => StateDivision.fromMap(model)));
+    List<StateDivision> states = List<StateDivision>.from(
+        data.map((model) => StateDivision.fromMap(model)));
     return states;
   }
 
   /// Get NRC State by state code
-  static Future<StateDivision?> getStateByStateCode({required String stateCode}) async {
+  static Future<StateDivision?> getStateByStateCode(
+      {required String stateCode}) async {
     List<StateDivision?> stateList = await states();
 
     StateDivision? state = stateList.firstWhere(
@@ -49,6 +52,8 @@ class MmNrc {
   }
 
   /// Get NRC Township by state id.
+  ///
+  /// Return Township that related with input state id,
   static Future<Township> getNrcTownshipsByStateId(
       {required String stateId}) async {
     List<Township> townshipList = await townships();
@@ -58,6 +63,8 @@ class MmNrc {
   }
 
   /// Get NRC Township by state code . 1,2,3,4,5...
+  ///
+  /// Return Township that related with input state code `1,2,3,4..`,
   static Future<Township> getNrcTownshipsByStateCode(
       {required String stateCode}) async {
     List<Township> townshipList = await townships();
@@ -66,7 +73,9 @@ class MmNrc {
     return township;
   }
 
-/// Get NRC Township by short code
+  /// Get NRC Township by short code
+  ///
+  /// Return Township that related with input township short code `LAMANA,YAKANA...`,
   static Future<Township> getNrcTownshipsByShortCode(
       {required String shortCode}) async {
     List<Township> townshipList = await townships();
@@ -76,6 +85,8 @@ class MmNrc {
   }
 
   /// Get NRC Types
+  ///
+  /// Return Type objects list
   static Future<List<Types>> types() async {
     final String response = await rootBundle.loadString(Data.type);
     Iterable data = await json.decode(response);
@@ -86,6 +97,8 @@ class MmNrc {
   }
 
   /// Get NRC Type by id
+  ///
+  /// Return Type that relate with type id
   static Future<Types> getNrcTypeById({required String typeId}) async {
     List<Types> typesList = await types();
     Types type = typesList.firstWhere((element) => element.id == typeId);
@@ -93,6 +106,8 @@ class MmNrc {
   }
 
   /// Get NRC Type by name
+  ///
+  /// Return Type that related with type name `N,E,S,T,P,Y`
   static Future<Types> getNrcTypeByName({required String nrcType}) async {
     List<Types> typesList = await types();
     Types type = typesList.firstWhere((element) =>
@@ -101,6 +116,8 @@ class MmNrc {
   }
 
   /// Split NRC [stateCode],[townshipCode],[nrcType],[nrcNo]
+  ///
+  /// Return NRC(stateCode,townshipCode,nrcType,nrcNo)
   static Nrc splitNrc(String nrcFullString) {
     var list = nrcFullString.split(RegExp(r"[/()]"));
     Nrc nrc = Nrc(

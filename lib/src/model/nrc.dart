@@ -1,3 +1,4 @@
+/// Nrc model is used for user's nrc string and splited string
 class Nrc {
   final String stateCode;
   final String townshipCode;

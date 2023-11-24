@@ -1,7 +1,6 @@
 name: mm_nrc
-description: "A package that provide myanmar nrc utils helper."
+description: "The mm_nrc is a Flutter package that provides an input form for Myanmar National Registration Card (NRC) numbers. The package allows users to get the NRC code, place, type, and enter the NRC number."
 version: 0.0.1
-author: Cosmas <myatnoeaung.dev@gmail.com>
 homepage: https://github.com/myatnoeaung-dev/mm_nrc.git
 
 environment:
