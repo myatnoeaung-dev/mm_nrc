@@ -1,3 +1,4 @@
+import 'package:example/mm_nrc_form.dart';
 import 'package:flutter/material.dart';
 import 'package:mm_nrc/mm_nrc.dart';
 
@@ -37,9 +38,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
+class MyHomePage extends StatelessWidget {
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
   // how it looks.
@@ -51,17 +50,36 @@ class MyHomePage extends StatefulWidget {
 
   final String title;
 
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
+  const MyHomePage({super.key, required this.title});
 
-class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    print('##¸Build in main');
+    String dropdownvalue = 'Item 1';
+
+    // List of items in our dropdown menu
+    var items = [
+      'Item 1',
+      'Item 2',
+      'Item 3',
+      'Item 4',
+      'Item 5',
+    ];
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        title: Text(title),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            MmNrcForm(
+              items: items,
+              value: dropdownvalue,
+            ),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
@@ -81,8 +99,8 @@ class _MyHomePageState extends State<MyHomePage> {
           print('State Name : ${state?.name.en}');
 
           ///Get Township with stateCode
-          Township township = await MmNrc.getNrcTownshipsByStateCode(
-              stateCode: nrc.townshipCode);
+          Township township =
+              await MmNrc.getNrcTownshipsByStateCode(stateCode: nrc.stateCode);
           print('Township EnName : ${township.name.en}');
           print('Township MmName : ${township.name.mm}');
 
@@ -94,13 +112,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
           ///Get Types list that return `N,E,S,T,P,Y`
           List<Types> types = await MmNrc.types();
+          print(types);
 
           ///Get Type with nrc type
-          Types type = await MmNrc.getNrcTypeByName(nrcType: 'nrcType');
+          Types type = await MmNrc.getNrcTypeByName(nrcType: nrc.nrcType);
           print('Nrc Type : ${type.name.en} ${type.name.mm}');
         },
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+        tooltip: 'Check',
+        child: const Icon(Icons.print),
       ),
     );
   }

@@ -19,46 +19,14 @@ class MmNrc {
     return false;
   }
 
-  /// Get NRC States
-  static Future<List<StateDivision?>> states() async {
-    final String response = await rootBundle.loadString(Data.state);
-    Iterable data = await json.decode(response);
-    List<StateDivision> states = List<StateDivision>.from(
-        data.map((model) => StateDivision.fromMap(model)));
-    return states;
-  }
-
-  /// Get NRC State by state code
-  static Future<StateDivision?> getStateByStateCode(
-      {required String stateCode}) async {
-    List<StateDivision?> stateList = await states();
-
-    StateDivision? state = stateList.firstWhere(
-      (element) =>
-          (element?.number.en == stateCode || element?.number.mm == stateCode),
-    );
-    return state;
-  }
-
-  /// Get NRC Townships
-  static Future<List<Township>> townships() async {
-    final String response = await rootBundle.loadString(Data.township);
-    Iterable data = await json.decode(response);
-
-    List<Township> township =
-        List<Township>.from(data.map((model) => Township.fromMap(model)));
-
-    return township;
-  }
-
-  /// Get NRC Township by state id.
+  /// Get NRC Township by short code
   ///
-  /// Return Township that related with input state id,
-  static Future<Township> getNrcTownshipsByStateId(
-      {required String stateId}) async {
+  /// Return Township that related with input township short code `LAMANA,YAKANA...`,
+  static Future<Township> getNrcTownshipsByShortCode(
+      {required String shortCode}) async {
     List<Township> townshipList = await townships();
-    Township township =
-        townshipList.firstWhere((element) => element.stateId == stateId);
+    Township township = townshipList.firstWhere((element) =>
+        (element.short.en == shortCode || element.short.mm == shortCode));
     return township;
   }
 
@@ -73,27 +41,15 @@ class MmNrc {
     return township;
   }
 
-  /// Get NRC Township by short code
+  /// Get NRC Township by state id.
   ///
-  /// Return Township that related with input township short code `LAMANA,YAKANA...`,
-  static Future<Township> getNrcTownshipsByShortCode(
-      {required String shortCode}) async {
+  /// Return Township that related with input state id,
+  static Future<Township> getNrcTownshipsByStateId(
+      {required String stateId}) async {
     List<Township> townshipList = await townships();
-    Township township = townshipList.firstWhere((element) =>
-        (element.short.en == shortCode || element.short.mm == shortCode));
+    Township township =
+        townshipList.firstWhere((element) => element.stateId == stateId);
     return township;
-  }
-
-  /// Get NRC Types
-  ///
-  /// Return Type objects list
-  static Future<List<Types>> types() async {
-    final String response = await rootBundle.loadString(Data.type);
-    Iterable data = await json.decode(response);
-    List<Types> type =
-        List<Types>.from(data.map((model) => Types.fromMap(model)));
-
-    return type;
   }
 
   /// Get NRC Type by id
@@ -115,6 +71,18 @@ class MmNrc {
     return type;
   }
 
+  /// Get NRC State by state code
+  static Future<StateDivision?> getStateByStateCode(
+      {required String stateCode}) async {
+    List<StateDivision?> stateList = await states();
+
+    StateDivision? state = stateList.firstWhere(
+      (element) =>
+          (element?.number.en == stateCode || element?.number.mm == stateCode),
+    );
+    return state;
+  }
+
   /// Split NRC [stateCode],[townshipCode],[nrcType],[nrcNo]
   ///
   /// Return NRC(stateCode,townshipCode,nrcType,nrcNo)
@@ -126,6 +94,38 @@ class MmNrc {
         nrcType: list[2],
         nrcNo: list[3]);
     return nrc;
+  }
+
+  /// Get NRC States
+  static Future<List<StateDivision?>> states() async {
+    final String response = await rootBundle.loadString(Data.state);
+    Iterable data = await json.decode(response);
+    List<StateDivision> states = List<StateDivision>.from(
+        data.map((model) => StateDivision.fromMap(model)));
+    return states;
+  }
+
+  /// Get NRC Townships
+  static Future<List<Township>> townships() async {
+    final String response = await rootBundle.loadString(Data.township);
+    Iterable data = await json.decode(response);
+
+    List<Township> township =
+        List<Township>.from(data.map((model) => Township.fromMap(model)));
+
+    return township;
+  }
+
+  /// Get NRC Types
+  ///
+  /// Return Type objects list
+  static Future<List<Types>> types() async {
+    final String response = await rootBundle.loadString(Data.type);
+    Iterable data = await json.decode(response);
+    List<Types> type =
+        List<Types>.from(data.map((model) => Types.fromMap(model)));
+
+    return type;
   }
 
   // static String convertEnNrcToMMNrc() {
