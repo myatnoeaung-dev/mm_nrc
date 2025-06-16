@@ -1,11 +1,11 @@
 # Myanmar NRC Data and Utils Helpers
 [![pub package]](https://pub.dev/packages/mm_nrc)
 
-### Resources:
-- [GitHub Repository](https://github.com/myatnoeaung-dev/mm_nrc.git)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/myatnoeaung-dev/mm_nrc/refs/heads/main/assets/mm_nrc_logo.png" width="150" alt="Mm Nrc Logo">
+</p>
 
-| **Support** | Android | iOS        |
-|-------------|---------|------------|
+[![pub package](https://img.shields.io/pub/v/mm_nrc.svg)](https://pub.dev/packages/mm_nrc)
 
 ### Installation
 To use this plugin, add `mm_nrc` as a [dependency in your pubspec.yaml file](https://flutter.dev/docs/development/platform-integration/platform-channels).
