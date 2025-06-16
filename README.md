@@ -1,5 +1,4 @@
 # Myanmar NRC Data and Utils Helpers
-[![pub package]](https://pub.dev/packages/mm_nrc)
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/myatnoeaung-dev/mm_nrc/refs/heads/main/assets/mm_nrc_logo.png" width="150" alt="Mm Nrc Logo">
